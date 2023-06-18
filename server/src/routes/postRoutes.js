@@ -6,7 +6,7 @@ const router = Router()
 
 router.post('/', verifyUser ,upload.single('img') ,createPost)
 // router.post('/login', login)
-router.get('/', getPost)
+router.get('/all-post', getPost)
 router.delete('/:id', deletePost)
 
 router.put('/like/:id', verifyUser, likePost)

@@ -20,7 +20,7 @@ export const createPost = async (req, res, next) => {
 }
 export const getPost = async (req, res, next) => {
     try {
-        const post = await Post.find({}).populate('postedBy').sort({ createdAt :-1 }).populate('likes')
+        const post = await Post.find({}).sort({ createdAt :-1 }).populate('postedBy likes comments')
         res.json(post)
     } catch (error) {
         next(error)

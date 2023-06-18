@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { login, logout } from '../store/Reducer'
 import axios from 'axios'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTree } from '@fortawesome/free-solid-svg-icons'
 
 function Nav() {
     const { user } = useSelector((state) => state.user)
@@ -23,11 +25,11 @@ function Nav() {
     return (
         <div className='shadow-md center-col py-4 fixed top-0 w-full bg-white z-10'>
             <div className='w-lg center-row justify-between'>
-                <Link to='/' className='text-blue-500 text-2xl font-semibold tracking-wide'>KITKAT⚡️</Link>
+                <Link to='/' className='text-blue-500 text-2xl font-semibold tracking-wide'>socialmedia <FontAwesomeIcon icon={faTree} /> </Link>
                 {user &&
                     <div className='flex gap-4 items-center'>
                         <div className='flex items-center gap-2'>
-                            <p className='rounded-md text-blue-500 px-2'>
+                            <p className='rounded-md font-medium text-blue-500 px-2'>
                                 {user.firstName} {user.lastName}
                             </p>
                             <img src={user.picturePath.url} alt="" className="w-10 h-10 object-cover rounded-full shadow-md" />

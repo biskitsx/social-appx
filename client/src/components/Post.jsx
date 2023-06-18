@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGear, faHeartCircleBolt, faThumbsUp, faHeart, faComment } from '@fortawesome/free-solid-svg-icons';
+import { faGear, faHeartCircleBolt, faThumbsUp, faHeart, faComment, faList, faEllipsis } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { get } from '../store/postReducer';
@@ -14,7 +14,7 @@ export default function Post() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const res = await axios.get('http://localhost:3000/api/post/');
+            const res = await axios.get('http://localhost:3000/api/post/all-post');
             dispatch(get(res.data));
         };
         fetchData();
@@ -49,9 +49,10 @@ export default function Post() {
                     const commentCount = Object.keys(comments).length;
 
                     return (
-                        <div className="shadow-md rounded-md bg-white flex gap-2 p-6 flex-col" key={item._id}>
+                        <div className="shadow-md rounded-md bg-white flex gap-2 p-6 flex-col relative" key={item._id}>
+                            <FontAwesomeIcon icon={faEllipsis} className='absolute top-7 right-8 text-xl text-zinc-700' />
                             <div className="flex gap-4">
-                                <img src={item.postedBy?.picturePath?.url} alt="" className="w-12 h-12 object-cover rounded-full shadow-md" />
+                                <img src={item.postedBy?.picturePath?.url} alt="" className="w-12 h-12 object-cover rounded-o shadow-md" />
 
                                 <div className="flex flex-col">
                                     <h1 className="text-xl text-zinc-900">
