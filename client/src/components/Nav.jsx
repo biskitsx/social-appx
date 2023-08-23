@@ -23,23 +23,23 @@ function Nav() {
     }, [])
 
     return (
-        <div className='shadow-md center-col py-4 fixed top-0 w-full bg-white z-10'>
+        <div className='shadow-md center-col py-4 fixed top-0 w-full bg-blue-900 z-10'>
             <div className='w-lg center-row justify-between'>
-                <Link to='/' className='text-blue-500 text-2xl font-semibold tracking-wide'>socialmedia <FontAwesomeIcon icon={faTree} /> </Link>
+                <Link to='/' className='text-white text-2xl font-semibold tracking-wide'>socialmedia 🧃 </Link>
                 {user &&
                     <div className='flex gap-4 items-center'>
                         <div className='flex items-center gap-2'>
-                            <p className='rounded-md font-medium text-blue-500 px-2'>
+                            <p className='rounded-md font-medium text-white px-2'>
                                 {user.firstName} {user.lastName}
                             </p>
-                            <img src={user.picturePath.url} alt="" className="w-10 h-10 object-cover rounded-full shadow-md" />
+                            <img src={user.picturePath?.url} alt="" className="w-10 h-10 object-cover rounded-full shadow-md" />
 
                         </div>
-                        <button onClick={handleButton}>Log out</button>
+                        <button onClick={handleButton} className='text-white'>Log out</button>
                     </div>
                 }
                 {!user &&
-                    <div className='flex gap-5'>
+                    <div className='flex gap-5 text-white'>
                         <Link to='/register'>Sign up</Link>
                         <Link to='/login'>Log in</Link>
                     </div>

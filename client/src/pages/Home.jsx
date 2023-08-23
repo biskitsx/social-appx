@@ -55,7 +55,7 @@ function Home() {
             <div className='flex gap-6 flex-col'>
                 <form className='shadow-md rounded-md bg-white p-6 flex gap-2 flex-col' onSubmit={handleButton}>
                     <div className='flex flex-row items-center gap-3'>
-                        <img src={user.picturePath.url} alt="" className="w-10 h-10 object-cover rounded-full shadow-md" />
+                        <img src={user.picturePath?.url} alt="" className="w-10 h-10 object-cover rounded-full shadow-md" />
 
                         <input type="text" className='rounded-2xl bg-zinc-100 w-full text-lg outline-none px-2' value={title} onChange={(e) => { setTitle(e.target.value) }} />
                     </div>
