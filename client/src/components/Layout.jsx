@@ -17,8 +17,8 @@ function Layout({ children }) {
     // }, [])
 
     return (
-        <div className='w-lg mx-auto mt-20 flex flex-row gap-6 py-6'>
-            <div className='w-4/12 flex flex-col gap-6'>
+        <div className='container mx-auto mt-20 flex flex-col gap-6 py-6 md:flex-row'>
+            <div className='md:w-4/12 flex flex-col gap-6'>
                 <div className='bg-white shadow-md rounded-md p-6 flex gap-2 flex-col'>
                     <div className='flex flex-row relative gap-3'>
                         <img src={user?.picturePath?.url} alt="" className='w-14 h-14 object-cover rounded-full shadow-md' />
@@ -62,7 +62,7 @@ function Layout({ children }) {
 
             </div>
 
-            <div className='w-8/12'>
+            <div className='md:w-8/12'>
                 {children}
             </div>
 
