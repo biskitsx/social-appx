@@ -8,6 +8,7 @@ axios.defaults.withCredentials = true
 import { Provider } from 'react-redux'
 import store from './store/store.js'
 
+// dotenv.config()
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
         <BrowserRouter>
