@@ -7,6 +7,7 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import Setting from './pages/Setting'
 import UserPage from './pages/UserPage'
+import Register from './pages/Register'
 function App() {
     return (
         <div>
@@ -16,6 +17,7 @@ function App() {
                 <Route path='/login' element={<Login />} />
                 <Route path='/setting' element={<Setting />} />
                 <Route path='/user/:id' element={<UserPage />} />
+                <Route path='/register' element={<Register />} />
             </Routes>
         </div>
     )
