@@ -12,7 +12,6 @@ export const createPost = async (req, res, next) => {
         }
 
         await post.save()
-        console.log(post)
         return res.json(post) 
     } catch (error) {
         next(error)

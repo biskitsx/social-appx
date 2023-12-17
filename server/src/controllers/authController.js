@@ -6,11 +6,12 @@ import { tokenManager } from '../utils/tokenManager.js'
 export const register = async (req, res, next) => {
     try {
         // not fill
-        const {email, password, firstName, lastName} = req.body
+        const { email, password, firstName, lastName } = req.body
+        console.log({ firstName, lastName, email, password })
         if (!(email && password && firstName && lastName)) return next(createError(400, "All field is required"))
 
         // email already exists
-        const already = await User.findOne({email}) 
+        const already = await User.findOne({ email })
         if (already) return next(createError(400, "This email already used"))
 
         const user = new User(req.body)
@@ -28,9 +29,9 @@ export const register = async (req, res, next) => {
 }
 export const login = async (req, res, next) => {
     try {
-        const {email, password} = req.body
+        const { email, password } = req.body
 
-        const user = await User.findOne({email}) 
+        const user = await User.findOne({ email })
         if (!user) return next(createError(400, "Wrong email"))
 
         const match = await bcrypt.compare(password, user.password)
@@ -49,8 +50,8 @@ export const login = async (req, res, next) => {
 export const logout = (req, res, next) => {
     try {
         res
-        .clearCookie("access_token")
-        .json({msg: "LOGOUT successfully"})
+            .clearCookie("access_token")
+            .json({ msg: "LOGOUT successfully" })
     } catch (error) {
         next(error)
     }

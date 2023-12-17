@@ -2,28 +2,28 @@ import mongoose, { Document, Model, model } from 'mongoose'
 
 const userSchema = new mongoose.Schema({
     firstName: {
-        type: String, 
+        type: String,
         required: true
     },
     lastName: {
-        type: String, 
+        type: String,
         required: true
     },
     email: {
-        type: String, 
+        type: String,
         required: true,
         unique: true
     },
     password: {
-        type: String, 
+        type: String,
         required: true
     },
     isAdmin: {
-        type: Boolean, 
+        type: Boolean,
         default: false
     },
     isOnline: {
-        type: Boolean, 
+        type: Boolean,
     },
     friend: [{
         type: mongoose.Types.ObjectId,
@@ -37,9 +37,23 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: ''
     },
-    picturePath: {}
-    
-},{ timestamps: true})
+    picturePath: {
+        url: {
+            type: String,
+            default: ''
+        },
+        asset_id: {
+            type: String,
+            default: ''
+
+        },
+        public_id: {
+            type: String,
+            default: ''
+        }
+    }
+
+}, { timestamps: true })
 
 const User = model("User", userSchema)
 export default User

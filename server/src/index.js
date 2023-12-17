@@ -1,7 +1,7 @@
 // package import
 import express from 'express'
 import cookieParser from 'cookie-parser'
-import dotenv from 'dotenv' 
+import dotenv from 'dotenv'
 import cors from 'cors'
 import morgan from 'morgan'
 // dotenv
@@ -27,19 +27,21 @@ const app = express()
 app.use(morgan('dev'))
 app.use(express.json())
 app.use(cookieParser())
-app.use(cors({origin: "http://localhost:5173",credentials: true}))
+// app.use(cors({ credentials: true, origin: "***" }))
+// app.use(cors())
+app.use(cors({ origin: ["http://localhost:5173", "server:5173"], credentials: true }))
 
 // routes
 app.use("/api/auth", authRoutes)
-app.use("/api/user", userRoutes)
-app.use("/api/post", postRoutes)
+app.use("/api/users", userRoutes)
+app.use("/api/posts", postRoutes)
 
 // handle Error
 app.use(errorMiddleware)
 
 // listening
 const PORT = process.env.PORT
-app.listen(PORT, async ()=> {
+app.listen(PORT, async () => {
     logger.info(`LISTENING AT PORT: ${PORT}`)
     await connectDb()
 })
