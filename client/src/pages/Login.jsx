@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { login } from '../store/Reducer'
 import { useNavigate } from 'react-router-dom'
-
+import { endPoint } from '../store/api'
 function Login() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -13,7 +13,7 @@ function Login() {
     const handleButton = async (e) => {
         e.preventDefault()
         try {
-            const res = await axios.post("http://localhost:3000/api/auth/login", { email, password })
+            const res = await axios.post(`${endPoint}/auth/login`, { email, password })
             dispatch(login(res.data))
             localStorage.setItem("user", JSON.stringify(res.data))
             naviate('/')
