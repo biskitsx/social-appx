@@ -3,6 +3,7 @@ import Layout from '../components/Layout'
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../store/Reducer';
 import axios from 'axios';
+import { endPoint } from '../store/api';
 
 function Setting() {
     const { user } = useSelector((state) => state.user);
@@ -20,7 +21,7 @@ function Setting() {
         formData.append('lastName', lastName)
         formData.append('location', location)
         formData.append('occupation', occupation)
-        const res = await axios.put(`http://localhost:3000/api/user/update-img`, formData)
+        const res = await axios.put(`${endPoint}/users`, formData)
         dispatch(login(res.data))
     }
     return (
@@ -46,6 +47,7 @@ function Setting() {
                 <div className='flex gap-4'>
                     <label className='text-zinc-700 w-full border-2 text-center p-5 cursor-pointer' htmlFor='img'>Upload profile image</label>
                     <input type="file" className='hidden' id='img' onChange={e => setImg(e.target.files[0])} />
+                    {img && <img src={URL.createObjectURL(img)} alt="" className='w-20 h-20 object-cover' />}
                 </div>
                 <button className='bg-blue-500 text-white py-2 rounded-md ' type='submit'>Update</button>
             </form>
