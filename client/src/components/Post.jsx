@@ -6,34 +6,35 @@ import axios from 'axios';
 import { get } from '../store/postReducer';
 import { formatDistanceToNow } from 'date-fns';
 import { like, unlike } from '../store/postReducer';
+import { endPoint } from '../store/api';
 
 export default function Post() {
     const dispatch = useDispatch();
     const { post } = useSelector((state) => state.post);
     const { user } = useSelector((state) => state.user);
+    const [likedPosts, setLikedPosts] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
-            const res = await axios.get('http://localhost:3000/api/post/all-post');
+            const res = await axios.get(`${endPoint}/posts`);
             dispatch(get(res.data));
         };
         fetchData();
     }, []);
 
     // Move the useState hook outside of the map function
-    const [likedPosts, setLikedPosts] = useState([]);
-
+    console.log(likedPosts)
     const likeButton = async (e, id) => {
         e.preventDefault();
         const isLiked = likedPosts.includes(id);
         if (!isLiked) {
             // Like the post
-            const res = await axios.put(`http://localhost:3000/api/post/like/${id}`);
+            const res = await axios.put(`${endPoint}/posts/${id}/like`);
             dispatch(like(res.data));
             setLikedPosts([...likedPosts, id]); // Add the liked post to the list
         } else {
             // Unlike the post
-            const res = await axios.put(`http://localhost:3000/api/post/unlike/${id}`);
+            const res = await axios.put(`${endPoint}/posts/${id}/unlike`);
             dispatch(unlike(res.data));
             setLikedPosts(likedPosts.filter((postId) => postId !== id)); // Remove the unliked post from the list
         }
