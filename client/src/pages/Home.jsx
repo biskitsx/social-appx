@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGear, faHeartCircleBolt, faThumbsUp, faHeart, faImage, faFile, faVideo } from '@fortawesome/free-solid-svg-icons'
 import Post from '../components/Post';
 import { add } from '../store/postReducer';
+import { endPoint } from '../store/api'
+
 
 function Home() {
     const { user } = useSelector((state) => state.user);
@@ -29,7 +31,7 @@ function Home() {
             formData.append("img", fileName)
             formData.append("title", title)
 
-            const res = await axios.post("http://localhost:3000/api/post", formData)
+            const res = await axios.post(`${endPoint}/posts`, formData)
             console.log(res.data)
             dispatch(add(res.data))
             setFileName(null)
