@@ -7,6 +7,7 @@ import { get } from '../store/postReducer';
 import { formatDistanceToNow } from 'date-fns';
 import { like, unlike } from '../store/postReducer';
 import Layout from '../components/Layout';
+import { endPoint } from '../store/api'
 
 export default function UserPage() {
     const dispatch = useDispatch();
@@ -15,7 +16,7 @@ export default function UserPage() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const res = await axios.get(`http://localhost:3000/api/post/user/648c09478ded2bfeb5d696f4`);
+            const res = await axios.get(`${endPoint}/posts/users/${user._id}`);
             dispatch(get(res.data));
         };
         fetchData();
@@ -29,12 +30,12 @@ export default function UserPage() {
         const isLiked = likedPosts.includes(id);
         if (!isLiked) {
             // Like the post
-            const res = await axios.put(`http://localhost:3000/api/post/like/${id}`);
+            const res = await axios.put(`${endPoint}/posts/${id}/like/`);
             dispatch(like(res.data));
             setLikedPosts([...likedPosts, id]); // Add the liked post to the list
         } else {
             // Unlike the post
-            const res = await axios.put(`http://localhost:3000/api/post/unlike/${id}`);
+            const res = await axios.put(`${endPoint}/posts/${id}/unlike/`);
             dispatch(unlike(res.data));
             setLikedPosts(likedPosts.filter((postId) => postId !== id)); // Remove the unliked post from the list
         }
