@@ -7,7 +7,6 @@ export const register = async (req, res, next) => {
     try {
         // not fill
         const { email, password, firstName, lastName } = req.body
-        console.log({ firstName, lastName, email, password })
         if (!(email && password && firstName && lastName)) return next(createError(400, "All field is required"))
 
         // email already exists
