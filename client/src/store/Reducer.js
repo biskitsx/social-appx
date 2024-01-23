@@ -1,3 +1,4 @@
+import { faChampagneGlasses } from "@fortawesome/free-solid-svg-icons";
 import { createSlice, current } from "@reduxjs/toolkit";
 
 const initialState = {
@@ -9,8 +10,11 @@ const userSlice = createSlice({
     initialState,
     reducers: {
         login: (state, action) => {
+            if (action.payload == null) {
+                return
+            }
             state.user = action.payload
-            if (!!!state.user.picturePath || state.user.picturePath?.url == "" || !!!state.user.picturePath?.url) {
+            if (!!!state.user.picturePath || state.user?.picturePath?.url == "" || !!!state.user?.picturePath?.url) {
                 state.user.picturePath.url = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
             }
         },

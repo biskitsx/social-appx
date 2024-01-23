@@ -21,6 +21,9 @@ function Nav() {
     }
     useEffect(() => {
         const userInfo = localStorage.getItem("user")
+        if (userInfo != null) {
+            return 
+        }
         const objUser = JSON.parse(userInfo)
         dispatch(login(objUser))
     }, [])

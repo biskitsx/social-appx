@@ -29,7 +29,7 @@ app.use(express.json())
 app.use(cookieParser())
 // app.use(cors({ credentials: true, origin: "***" }))
 // app.use(cors())
-app.use(cors({ origin: ["http://localhost:5173", "server:5173"], credentials: true }))
+app.use(cors({ origin: ["http://localhost:5173","http://localhost:80", "http://localhost", "client", "server:5173", "localhost"], credentials: true }))
 
 // routes
 app.use("/api/auth", authRoutes)
