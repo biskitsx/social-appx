@@ -76,13 +76,13 @@ export default function Post() {
                                     />
                                     <p>{likeCount}</p>
                                 </div>
-                                <div className="flex flex-row items-center text-zinc-400 gap-2">
+                                {/* <div className="flex flex-row items-center text-zinc-400 gap-2">
                                     <FontAwesomeIcon
                                         icon={faComment}
                                         className='cursor-pointer'
                                     />
                                     <p>{commentCount}</p>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     );
